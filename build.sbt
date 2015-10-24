@@ -10,6 +10,9 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
+  //Adding the bootstrap webjar, so I don't have to stick em in there
+  "org.webjars" % "bootstrap" % "3.2.0-2",
+  "org.webjars" % "highcharts" % "3.0.7",
   specs2 % Test
 )
 
