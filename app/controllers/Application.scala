@@ -1,12 +1,21 @@
 package controllers
 
+import models.TestApplication
 import play.api._
 import play.api.mvc._
 
 class Application extends Controller {
 
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    val appList = List(
+      TestApplication("repose"),
+      TestApplication("not_repose")
+    )
+    Ok(views.html.index(appList))
   }
+
+  def applicationDetails(appId: String) = TODO
+
+  def applicationSubApps(appId: String) = TODO
 
 }

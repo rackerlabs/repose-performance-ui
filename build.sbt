@@ -10,9 +10,13 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
+  //This adds handy webjar support to play
+  "org.webjars" %% "webjars-play" % "2.4.0-1",
   //Adding the bootstrap webjar, so I don't have to stick em in there
   "org.webjars" % "bootstrap" % "3.2.0-2",
   "org.webjars" % "highcharts" % "3.0.7",
+  //Add redis
+  "net.debasishg" %% "redisclient" % "3.0",
   specs2 % Test
 )
 
