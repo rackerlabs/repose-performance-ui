@@ -1,17 +1,10 @@
-@(applications: List[TestApplication])
+@(applications: List[TestApp])
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <!-- Bootstrap -->
-        <link rel="stylesheet" media="screen" href="@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))" />
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/repose.css")" />
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")"/>
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")"/>
-        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
-
-        <title>Performance App</title>
+        @tags.styles()
+    <title>Performance App</title>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,19 +25,15 @@
                     <div class="modal-body">
                         <div class="list-group">
                         @for(app <- applications) {
-                            <a href="@routes.Application.applicationDetails(app.id)" class="list-group-item">@app.id</a>
+                            <a href="@routes.Apps.applicationDetails(app.id)" class="list-group-item">@app.id</a>
                         }
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <!-- JavaScript plugins (requires jQuery) -->
-        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))'></script>
-            <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-        <script type='text/javascript' src="/public/javascripts/respond.js"></script>
+
+        @tags.javascripts()
 
         <script type="text/javascript">
     	$(document).ready(function() {
