@@ -1,3 +1,3 @@
 package models
 
-case class SubTestApp(parent: TestApp, id: String)
+case class SubTestApp(parentId: String, id: String)

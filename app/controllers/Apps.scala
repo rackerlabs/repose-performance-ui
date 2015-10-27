@@ -1,30 +1,26 @@
 package controllers
 
 import models.TestApp
+import org.openrepose.perf.lamestdbever.LameDB
 import play.api._
 import play.api.mvc._
 
 class Apps extends Controller {
 
   def index = Action {
-    val appList = List(
-      TestApp("repose"),
-      TestApp("not_repose")
-    )
-    Ok(views.html.index(appList))
+    Ok(views.html.index(LameDB.listApps))
   }
 
   def applicationDetails(currentApp: String) = Action {
 
     //TODO: this should hit a database or something
-    val currentApp = TestApp("repose")
+    LameDB.getAppDetails(currentApp).map { tehApp =>
+      val title = s"Application details for ${tehApp.name}"
+      Ok(views.html.app_index(title, tehApp.name, tehApp.description, tehApp))
+    } getOrElse {
+      NotFound
+    }
 
-    val name = "Repose - todo"
-    val description = "description - todo"
-    val title = "Repose - todo"
-
-
-    Ok(views.html.app_index(title, name, description, currentApp))
   }
 
   def applicationSubApps(currentApp: String) = TODO

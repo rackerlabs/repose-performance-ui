@@ -35,7 +35,7 @@
                     <div class="col-lg-4">
                         <h2>Applications</h2>
                         <p>Applications can be configured by users.  You can view application setup here and can set up/edit/delete your application.</p>
-                        <p><a class="btn btn-default" href="/<%= data[:application] %>/applications">
+                        <p><a class="btn btn-default" href="@routes.Apps.applicationSubApps(currentApp.id)">
                             View details &raquo;</a></p>
                     </div>
                     <div class="col-lg-4">
@@ -53,9 +53,7 @@
 
                 <hr>
 
-                <footer>
-                    <p>&copy; Rackspace Hosting 2013</p>
-                </footer>
+                @tags.footer_goodies()
             </div>
 
         </div> <!-- /container -->
