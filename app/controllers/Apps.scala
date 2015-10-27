@@ -23,6 +23,13 @@ class Apps extends Controller {
 
   }
 
-  def applicationSubApps(currentApp: String) = TODO
+  def applicationSubApps(appId: String) = Action {
+    LameDB.getAppDetails(appId) map { app =>
+      val subApps = app.subApps
+      Ok(views.html.sub_apps_list(app, subApps))
+    } getOrElse {
+      NotFound(s"CANT FIND APP BY ID $appId")
+    }
+  }
 
 }
