@@ -31,6 +31,10 @@ object LameDB {
     appList.find(_.id == appId)
   }
 
+  def getSubAppDetails(subAppId: String): Option[SubTestApp] = {
+    subApps.find(_.id == subAppId)
+  }
+
   def listSubApps(parentApp: TestApp): List[SubTestApp] = {
     subApps.filter(sub => sub.parentId == parentApp.id)
   }
