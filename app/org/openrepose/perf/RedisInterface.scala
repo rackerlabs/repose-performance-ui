@@ -1,5 +1,6 @@
 package org.openrepose.perf
 
+import com.redis.RedisClient
 import models.{ResponseData, RequestData, SubTestApp}
 import org.openrepose.perf.lamestdbever.LameRedis
 import play.api.Logger
@@ -9,6 +10,10 @@ object RedisInterface {
   import play.api.libs.functional.syntax._
   import play.api.libs.json.Reads._
   import play.api.libs.json._
+  
+  //I had a dump of the redis from the performance server, but there's no useful keys in it :(
+  //I listed all the keys in the db and none of them provided most of what I'm looking for.
+  lazy val redis = new RedisClient("127.0.0.1", 6379)
 
   implicit val requestDataReads: Reads[RequestData] = (
     (JsPath \ "method").read[String] and
@@ -34,7 +39,7 @@ object RedisInterface {
 
     //HOLY CRAP THIS WAS FRUSTRATING
     //TODO: I'm not even wholly certain this keeps an order :|
-    val wat:List[String] = (json \\ "response_code").map { item =>
+    val wat: List[String] = (json \\ "response_code").map { item =>
       item.as[String]
     }.toList
 
