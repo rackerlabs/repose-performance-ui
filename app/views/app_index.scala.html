@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/<%= data[:application] %>/tests">Running Tests</a></li>
                     <li><a href="@routes.Apps.applicationSubApps(currentApp.id)">Applications</a></li>
-                    <li><a href="/<%= data[:application] %>/results">Results</a></li>
+                    <li><a href="@routes.Apps.allResults(currentApp.id)">Results</a></li>
                 </ul>
             </div>
         </div>

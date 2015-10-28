@@ -17,9 +17,6 @@ object RedisInterface {
     (JsPath \ "body").read[String]
     )(RequestData.apply _)
 
-  //WHY DOESNT THIS WORK?!??
-  val responseReads:Reads[String] = (JsPath \ "response_code").read[String]
-
   def parseRequestsFromRedis(subApp: SubTestApp): List[RequestData] = {
 
     ///Ignoring the sub app bits which would actually talk to redis, because I'm lazy and this is a fake DB
@@ -36,6 +33,7 @@ object RedisInterface {
     val json = Json.parse(LameRedis.lameResponseJson)
 
     //HOLY CRAP THIS WAS FRUSTRATING
+    //TODO: I'm not even wholly certain this keeps an order :|
     val wat:List[String] = (json \\ "response_code").map { item =>
       item.as[String]
     }.toList

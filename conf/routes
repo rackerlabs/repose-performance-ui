@@ -7,6 +7,7 @@ GET        /webjars/*file                    controllers.WebJarAssets.at(file)
 GET        /                                 controllers.Apps.index
 GET        /:app                             controllers.Apps.applicationDetails(app: String)
 GET        /:app/applications                controllers.Apps.applicationSubApps(app: String)
+GET        /:app/applications/results        controllers.Apps.allResults(app:String)
 GET        /:app/applications/:subApp        controllers.SubApps.subAppDetails(app: String, subApp: String)
 
 # Map static resources from the /public folder to the /assets URL path

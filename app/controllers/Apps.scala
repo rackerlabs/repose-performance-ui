@@ -32,4 +32,6 @@ class Apps extends Controller {
     }
   }
 
+  def allResults(appId:String) = TODO
+
 }
