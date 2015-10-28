@@ -1,6 +1,6 @@
 package controllers
 
-import models.TestApp
+import models.{SubTestAppResults, TestApp}
 import org.openrepose.perf.lamestdbever.LameDB
 import play.api._
 import play.api.mvc._
@@ -32,6 +32,25 @@ class Apps extends Controller {
     }
   }
 
-  def allResults(appId:String) = TODO
+  def allResults(appId: String) = Action {
+    LameDB.getAppDetails(appId) map { app =>
+      val subApps = app.subApps
+      //TODO: for each test run on all the subapps, get the details and determine if it failed or not.
+      //That's a pile of some sort of data from REDIS, not sure what it looks like
+      // REDIS KEY: s"$appId:${subApp.id}:results:status" value would either be passed or failed
+      //It mutates the subApps, which is kind of annoying, will have to figure out a way to deal with that somehow
+      // Perahps a different class to contain it
+
+
+      val subAppsWithResults = subApps.map { subApp =>
+        SubTestAppResults(subApp, "passed")
+      }
+
+
+      Ok(views.html.app_results(app, subAppsWithResults))
+    } getOrElse {
+      NotFound(s"CANT FIND APP BY ID $appId")
+    }
+  }
 
 }

@@ -28,4 +28,7 @@ class SubApps extends Controller {
       NotFound("COULDNT FIND APP DETAILS")
     }
   }
+
+  def resultDetails(appId: String, subAppId: String) = TODO
+
 }
