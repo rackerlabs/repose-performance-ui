@@ -7,10 +7,12 @@ import play.api.mvc._
 
 class Apps extends Controller {
 
+  //https://github.com/rackerlabs/repose-performance-ui/blob/master/README.md#get-
   def index = Action {
     Ok(views.html.index(LameDB.listApps))
   }
 
+  //https://github.com/rackerlabs/repose-performance-ui/blob/master/README.md#get-app
   def applicationDetails(currentApp: String) = Action {
 
     //TODO: this should hit a database or something
@@ -23,6 +25,7 @@ class Apps extends Controller {
 
   }
 
+  //https://github.com/rackerlabs/repose-performance-ui/blob/master/README.md#get-appapplicationssubapp
   def applicationSubApps(appId: String) = Action {
     LameDB.getAppDetails(appId) map { app =>
       val subApps = app.subApps
@@ -32,6 +35,7 @@ class Apps extends Controller {
     }
   }
 
+  //https://github.com/rackerlabs/repose-performance-ui/blob/master/README.md#get-appapplicationsresults
   def allResults(appId: String) = Action {
     LameDB.getAppDetails(appId) map { app =>
       val subApps = app.subApps

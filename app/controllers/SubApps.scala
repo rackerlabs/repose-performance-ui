@@ -1,12 +1,13 @@
 package controllers
 
-import models.{RequestResponseData, TestConfig}
+import models.{TestType, RequestResponseData, TestConfig}
 import org.openrepose.perf.RedisInterface
 import org.openrepose.perf.lamestdbever.LameDB
 import play.api._
 import play.api.mvc._
 
 class SubApps extends Controller {
+  //https://github.com/rackerlabs/repose-performance-ui/blob/master/README.md#get-appapplicationssubapp
   def subAppDetails(appId: String, subAppId: String) = Action {
     LameDB.getAppDetails(appId).map { app =>
       LameDB.getSubAppDetails(subAppId).map { subApp =>
@@ -28,7 +29,8 @@ class SubApps extends Controller {
     }
   }
 
-  def resultDetails(appId: String, subAppId: String) = Action {
+  //https://github.com/rackerlabs/repose-performance-ui/blob/master/README.md#get-appresultsresultid
+  def resultDetails(appId: String, resultId: String) = Action {
     //For the given sub App, ask redits for each of the test liststs?
 
 
@@ -37,9 +39,11 @@ class SubApps extends Controller {
     // If the status is not set, make it "passed"
 
     //Calculate a count of all the tests that have ever been run of this type
+    //TODO this would have to come from the redis
+    val testTypeCounts:Map[TestType, Int] = Map.empty[TestType, Int]
 
-    //Apparently tests are a guid, so you can get a guid out of the database, using a lrange query on redis
-
+    //Now collect all the statuses for each type
+    //TODO: all this would also have to come from some redis :(
 
     Ok("NOT YET DONE")
   }
