@@ -53,7 +53,7 @@ the application proper. Otherwise, it'll just require pairing with Dimtruck to m
     * Models/testlocation.rb line 19 	
 * Uses app_detail.erb in views/ directory
 
-#### GET /:app/results
+#### GET /:app/applications/results
 * main.rb line 381
 * Shows results for application.
 * For each sub application:
